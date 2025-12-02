@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart Support | AI-Powered Auto-Reply System</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="app-container">
+        <header>
+            <div class="logo">
+                <span class="icon">✨</span>
+                <h1>Smart Support</h1>
+            </div>
+            <div class="status-badge">AI Online</div>
+        </header>
+
+        <main>
+            <div class="grid-container">
+                <!-- Ticket Submission Section -->
+                <section class="card ticket-section">
+                    <h2>New Support Ticket</h2>
+                    <form id="ticketForm">
+                        <div class="form-group">
+                            <label for="subject">Subject</label>
+                            <input type="text" id="subject" placeholder="e.g., Login Issue" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="description">Description</label>
+                            <textarea id="description" placeholder="Describe the customer's issue..." required></textarea>
+                        </div>
+                        <button type="submit" class="btn-primary">
+                            <span>Analyze & Get Suggestions</span>
+                            <div class="loader" id="submitLoader"></div>
+                        </button>
+                    </form>
+                </section>
+
+                <!-- Suggestions Section -->
+                <section class="card suggestions-section">
+                    <h2>AI Suggested Replies</h2>
+                    <div id="suggestionsContainer" class="empty-state">
+                        <div class="placeholder-content">
+                            <span class="placeholder-icon">🤖</span>
+                            <p>Submit a ticket to see AI-powered suggestions based on historical data.</p>
+                        </div>
+                    </div>
+                </section>
+            </div>
+
+            <!-- History Section -->
+            <section class="card history-section">
+                <div class="section-header">
+                    <h2>Recent Tickets</h2>
+                    <button id="refreshHistory" class="btn-icon" title="Refresh">↻</button>
+                </div>
+                <div class="table-container">
+                    <table id="historyTable">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Subject</th>
+                                <th>Status</th>
+                                <th>Date</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="historyBody">
+                            <!-- Populated by JS -->
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
