@@ -28,7 +28,9 @@ class MLService:
         
         self.kb_data = pd.DataFrame(data)
         if not self.kb_data.empty:
-            self.tfidf_matrix = self.vectorizer.fit_transform(self.kb_data['question'])
+            # Combine question and answer for better matching context
+            self.kb_data['combined_text'] = self.kb_data['question'] + " " + self.kb_data['answer']
+            self.tfidf_matrix = self.vectorizer.fit_transform(self.kb_data['combined_text'])
 
     def get_suggestions(self, ticket_text, top_n=3):
         """Get top N suggested replies for a given ticket text"""

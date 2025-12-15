@@ -12,16 +12,21 @@ class SupportTicketViewSet(viewsets.ModelViewSet):
     def perform_create(self, serializer):
         ticket = serializer.save()
         
-        # Generate suggestions
-        ml_service = MLService()
-        suggestions = ml_service.get_suggestions(ticket.description)
-        
-        for sugg in suggestions:
-            SuggestedReply.objects.create(
-                ticket=ticket,
-                reply_text=sugg['reply_text'],
-                confidence_score=sugg['confidence_score']
-            )
+        try:
+            # Generate suggestions
+            ml_service = MLService()
+            suggestions = ml_service.get_suggestions(ticket.description)
+            
+            for sugg in suggestions:
+                SuggestedReply.objects.create(
+                    ticket=ticket,
+                    reply_text=sugg['reply_text'],
+                    confidence_score=sugg['confidence_score']
+                )
+        except Exception as e:
+            print(f"Error generating suggestions: {e}")
+            # We don't want to fail the ticket creation just because ML failed
+            pass
 
 class FeedbackViewSet(viewsets.ModelViewSet):
     queryset = Feedback.objects.all()
