@@ -23,9 +23,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-*b=-s=c5&!vh7ak824a*mz#ba9wkmebbv$kcxiyu!q5n9y*vup'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
-ALLOWED_HOSTS = [True]
+ALLOWED_HOSTS = []
 
 
 
@@ -77,12 +77,24 @@ WSGI_APPLICATION = 'support_system.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.2/ref/settings/#databases
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': BASE_DIR / 'db.sqlite3',
+#     }
+# }
+
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'echobot_db',
+        'USER': 'root',
+        'PASSWORD': 'Madhurabijawe95@',
+        'HOST': 'localhost',
+        'PORT': '3306',
     }
 }
+
 
 CORS_ALLOW_ALL_ORIGINS = True
 

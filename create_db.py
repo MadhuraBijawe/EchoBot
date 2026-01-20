@@ -8,3 +8,4 @@ try:
 except Exception as e:
     print(f"Error creating database: {e}")
     print("Please ensure MySQL is running and credentials are correct.")
+
